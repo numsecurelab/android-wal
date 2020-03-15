@@ -62,7 +62,7 @@ class BitcoinKit : AbstractKit {
     ) {
         val database = CoreDatabase.getInstance(context, getDatabaseName(networkType, walletId, syncMode, bip))
         val storage = Storage(database)
-        val initialSyncUrl: String
+        val initialSyncUrl = ""
 
         network = when (networkType) {
             NetworkType.MainNet -> {
