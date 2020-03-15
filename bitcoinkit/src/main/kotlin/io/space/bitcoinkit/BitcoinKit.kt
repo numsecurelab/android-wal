@@ -62,11 +62,11 @@ class BitcoinKit : AbstractKit {
     ) {
         val database = CoreDatabase.getInstance(context, getDatabaseName(networkType, walletId, syncMode, bip))
         val storage = Storage(database)
-        var initialSyncUrl = ""
+        val initialSyncUrl: String
 
         network = when (networkType) {
             NetworkType.MainNet -> {
-                initialSyncUrl = "https://btc.space.xyz/apg"
+                initialSyncUrl = "https://bitcoinblockexplorers.com/api"
                 MainNet()
             }
             NetworkType.TestNet -> {
@@ -77,7 +77,7 @@ class BitcoinKit : AbstractKit {
         }
 
         val paymentAddressParser = PaymentAddressParser("bitcoin", removeScheme = true)
-        val initialSyncApi = BCoinApi(initialSyncUrl)
+        val initialSyncApi = InsightApi(initialSyncUrl)
 
         val blockHelper = BlockValidatorHelper(storage)
 

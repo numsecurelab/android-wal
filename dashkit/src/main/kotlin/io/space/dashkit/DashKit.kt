@@ -93,7 +93,7 @@ class DashKit : AbstractKit, IInstantTransactionDelegate, BitcoinCore.Listener {
 
         network = when (networkType) {
             NetworkType.MainNet -> {
-                initialSyncUrl = "https://dash.space.xyz/apg"
+                initialSyncUrl = "https://explorer.dash.org/insight-api"
                 MainNetDash()
             }
             NetworkType.TestNet -> {

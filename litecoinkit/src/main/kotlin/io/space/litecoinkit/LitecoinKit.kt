@@ -64,11 +64,11 @@ class LitecoinKit : AbstractKit {
     ) {
         val database = CoreDatabase.getInstance(context, getDatabaseName(networkType, walletId, syncMode, bip))
         val storage = Storage(database)
-        var initialSyncUrl = ""
+        val initialSyncUrl: String
 
         network = when (networkType) {
             NetworkType.MainNet -> {
-                initialSyncUrl = "http://ltc.space.xyz/api"
+                initialSyncUrl = "https://litecoinblockexplorer.net/api"
                 MainNetLitecoin()
             }
             NetworkType.TestNet -> {
@@ -78,7 +78,7 @@ class LitecoinKit : AbstractKit {
         }
 
         val paymentAddressParser = PaymentAddressParser("litecoin", removeScheme = true)
-        val initialSyncApi = BCoinApi(initialSyncUrl)
+        val initialSyncApi = InsightApi(initialSyncUrl)
 
         val blockValidatorSet = BlockValidatorSet()
 
