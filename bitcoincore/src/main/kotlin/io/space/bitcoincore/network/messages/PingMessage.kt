@@ -1,0 +1,36 @@
+package io.space.bitcoincore.network.messages
+
+import io.space.bitcoincore.io.BitcoinInput
+import io.space.bitcoincore.io.BitcoinOutput
+import java.io.ByteArrayInputStream
+
+class PingMessage(val nonce: Long) : IMessage {
+    override fun toString(): String {
+        return "PingMessage(nonce=$nonce)"
+    }
+}
+
+class PingMessageParser : IMessageParser {
+    override val command: String = "ping"
+
+    override fun parseMessage(payload: ByteArray): IMessage {
+        BitcoinInput(ByteArrayInputStream(payload)).use { input ->
+            val nonce = input.readLong()
+            return PingMessage(nonce)
+        }
+    }
+}
+
+class PingMessageSerializer : IMessageSerializer {
+    override val command: String = "ping"
+
+    override fun serialize(message: IMessage): ByteArray? {
+        if (message !is PingMessage) {
+            return null
+        }
+
+        return BitcoinOutput()
+                .writeLong(message.nonce)
+                .toByteArray()
+    }
+}
