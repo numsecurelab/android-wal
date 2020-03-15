@@ -57,7 +57,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:4.0.1'
 
     // HDWallet Kit
-    api 'com.github.space:hd-wallet-kit-android:68903dc'
+    api 'com.gitlab.numsecurelab:hdwallet:0ed70ec0c6b83bfc4232943eb8d0be61a75c7b2f'
 
     // Test helpers
     testImplementation 'junit:junit:4.12'
